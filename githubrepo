@@ -1,2 +1,0 @@
-curl -s https://api.github.com/repos/lehoangluan1/expressBookReviews | jq '.parent.full_name'
-"ibm-developer-skills-network/expressBookReviews"
