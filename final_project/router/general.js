@@ -43,9 +43,9 @@ public_users.get("/isbn/:isbn", function (req, res) {
   const book = books[isbn];
 
   if (!book) {
-    return res
-      .status(404)
-      .json({ message: `Book with ISBN ${isbn} not found.` });
+    return res.status(404).json({
+      message: `Book with ISBN ${isbn} not found.`,
+    });
   }
 
   return res.status(200).send(JSON.stringify(book, null, 4));
@@ -63,9 +63,9 @@ public_users.get("/author/:author", function (req, res) {
   });
 
   if (Object.keys(filteredBooks).length === 0) {
-    return res
-      .status(404)
-      .json({ message: `No books found for author ${req.params.author}` });
+    return res.status(404).json({
+      message: `No books found for author ${req.params.author}`,
+    });
   }
 
   return res.status(200).send(JSON.stringify(filteredBooks, null, 4));
@@ -83,9 +83,9 @@ public_users.get("/title/:title", function (req, res) {
   });
 
   if (Object.keys(filteredBooks).length === 0) {
-    return res
-      .status(404)
-      .json({ message: `No books found for title ${req.params.title}` });
+    return res.status(404).json({
+      message: `No books found for title ${req.params.title}`,
+    });
   }
 
   return res.status(200).send(JSON.stringify(filteredBooks, null, 4));
@@ -96,15 +96,15 @@ public_users.get("/review/:isbn", function (req, res) {
   const isbn = req.params.isbn;
 
   if (!books[isbn]) {
-    return res
-      .status(404)
-      .json({ message: `Book with ISBN ${isbn} not found.` });
+    return res.status(404).json({
+      message: `Book with ISBN ${isbn} not found.`,
+    });
   }
 
   return res.status(200).send(JSON.stringify(books[isbn].reviews, null, 4));
 });
 
-// Task 10 - Promise callback + Axios
+// Retrieve all books using Axios with promise callbacks
 public_users.get("/async/books", function (req, res) {
   axios
     .get(`${BASE_URL}/`)
@@ -119,7 +119,7 @@ public_users.get("/async/books", function (req, res) {
     });
 });
 
-// Task 11 - Async/Await + Axios for ISBN
+// Retrieve books by ISBN using async/await with Axios
 public_users.get("/async/isbn/:isbn", async function (req, res) {
   try {
     const response = await axios.get(`${BASE_URL}/isbn/${req.params.isbn}`);
@@ -132,7 +132,7 @@ public_users.get("/async/isbn/:isbn", async function (req, res) {
   }
 });
 
-// Task 12 - Async/Await + Axios for Author
+// Retrieve books by author using async/await with Axios
 public_users.get("/async/author/:author", async function (req, res) {
   try {
     const response = await axios.get(
@@ -147,7 +147,7 @@ public_users.get("/async/author/:author", async function (req, res) {
   }
 });
 
-// Task 13 - Async/Await + Axios for Title
+// Retrieve books by title using async/await with Axios
 public_users.get("/async/title/:title", async function (req, res) {
   try {
     const response = await axios.get(
